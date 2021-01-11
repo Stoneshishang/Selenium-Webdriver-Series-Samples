@@ -1,3 +1,5 @@
+const { Options } = require("selenium-webdriver/chrome");
+
 require('chromedriver');
 const webdriver =  require('selenium-webdriver'),
       By = webdriver.By,
@@ -8,13 +10,17 @@ const webdriver =  require('selenium-webdriver'),
 
       driver.get('https://library-app.firebaseapp.com/');
       
-      driver.findElement(By.css('input')).then( (el) =>{
-        console.log("test input success!!" + JSON.stringify(el));
+      driver.findElement(By.css('input'));
+      driver.findElement(By.css('.btn-primary')).getText().then((txt)=>{
+        console.log("Text of the btn is " + txt);
       });
-      driver.findElement(By.css('.btn-primary')).then( (el) =>{
-        console.log("test button success!!" + el);
-      });;
-      driver.findElement(By.css('nav li')).then( (el) =>{
-        console.log("test nav success!!" + el);
-      });;
+      driver.findElements(By.css('nav li')).then((elements)=>{
+        console.log('elements are: ' + elements);
+        elements.map((el)=>{
+          el.getText().then((txt)=>{
+            console.log('the text of the navbar element is: ' + txt);
+          })
+        })
+      });
+      
 

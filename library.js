@@ -20,6 +20,8 @@ const webdriver =  require('selenium-webdriver'),
       //     })
       //   })
       // });
+      
+      //test I changed the no-reply email link to my github account on Nina's Mackbook Pro
 
       async function message(){
         await driver.wait(()=>{

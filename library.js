@@ -20,8 +20,9 @@ const webdriver =  require('selenium-webdriver'),
       //     })
       //   })
       // });
-      
+
       //test I changed the no-reply email link to my github account on Nina's Mackbook Pro
+      //based on the link https://docs.github.com/en/free-pro-team@latest/github/setting-up-and-managing-your-github-user-account/setting-your-commit-email-address
 
       async function message(){
         await driver.wait(()=>{

@@ -23,7 +23,9 @@ const webdriver =  require('selenium-webdriver'),
 
       async function message(){
         await driver.wait(()=>{
-          return submitBtn.isEnabled();
+          return submitBtn.getCssValue('opacity').then((result)=>{
+            return result == 1;
+          });
         },10000)
 
         submitBtn.click();

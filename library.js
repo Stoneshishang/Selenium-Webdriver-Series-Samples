@@ -9,9 +9,10 @@ const webdriver =  require('selenium-webdriver'),
       const driver = new webdriver.Builder().forBrowser('chrome').build();
 
       driver.get('https://library-app.firebaseapp.com/');
+
+      let submitBtn = driver.findElement(By.css('.btn-primary'))
+      driver.findElement(By.css('input')).sendKeys('user');
       
-      driver.findElement(By.css('input')).sendKeys('user@email.com');
-      driver.findElement(By.css('.btn-primary')).click();
       // driver.findElements(By.css('nav li')).then((elements)=>{
       //   elements.map((el)=>{
       //     el.getText().then((txt)=>{
@@ -21,6 +22,12 @@ const webdriver =  require('selenium-webdriver'),
       // });
 
       async function message(){
+        await driver.wait(()=>{
+          return submitBtn.isEnabled();
+        },10000)
+
+        submitBtn.click();
+
         await driver.wait(until.elementsLocated(By.css('.alert-success'),10000));
         await driver.findElement(By.css('.alert')).getText().then((txt)=>{
           console.log("Alert success text is: " + txt );
@@ -29,6 +36,7 @@ const webdriver =  require('selenium-webdriver'),
 
       message();
 
+      
       
       
 
